@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://example.org/its/algebra#"
+     xml:base="http://example.org/its/algebra"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://example.org/its/algebra">
+
+    <!-- ######################## -->
+    <!-- #####   CLASSES    ##### -->
+    <!-- ######################## -->
+
+    <Declaration><Class IRI="#Problem"/></Declaration>
+    <Declaration><Class IRI="#LinearEquationProblem"/></Declaration>
+    <SubClassOf>
+        <Class IRI="#LinearEquationProblem"/>
+        <Class IRI="#Problem"/>
+    </SubClassOf>
+
+    <Declaration><Class IRI="#Expression"/></Declaration>
+    <Declaration><Class IRI="#Term"/></Declaration>
+    <SubClassOf>
+        <Class IRI="#Term"/>
+        <Class IRI="#Expression"/>
+    </SubClassOf>
+
+    <Declaration><Class IRI="#EquationState"/></Declaration>
+    <Declaration><Class IRI="#Step"/></Declaration>
+    <Declaration><Class IRI="#SolutionStep"/></Declaration>
+    <SubClassOf>
+        <Class IRI="#SolutionStep"/>
+        <Class IRI="#Step"/>
+    </SubClassOf>
+
+    <Declaration><Class IRI="#Student"/></Declaration>
+    <Declaration><Class IRI="#Skill"/></Declaration>
+    <Declaration><Class IRI="#Misconception"/></Declaration>
+    <Declaration><Class IRI="#Hint"/></Declaration>
+    <Declaration><Class IRI="#TutorAction"/></Declaration>
+
+    <!-- Example specific misconception subclass -->
+    <Declaration><Class IRI="#OneSidedOperation"/></Declaration>
+    <SubClassOf>
+        <Class IRI="#OneSidedOperation"/>
+        <Class IRI="#Misconception"/>
+    </SubClassOf>
+
+    <!-- ############################ -->
+    <!-- ##### OBJECT PROPERTIES ##### -->
+    <!-- ############################ -->
+
+    <Declaration><ObjectProperty IRI="#hasProblemState"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasProblemState"/>
+        <Class IRI="#Student"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasProblemState"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#hasOriginalProblem"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasOriginalProblem"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasOriginalProblem"/>
+        <Class IRI="#Problem"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#hasLeftExpression"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasLeftExpression"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLeftExpression"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#hasRightExpression"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRightExpression"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRightExpression"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#performedStep"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#performedStep"/>
+        <Class IRI="#Student"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#performedStep"/>
+        <Class IRI="#Step"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#hasExpectedStep"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasExpectedStep"/>
+        <Class IRI="#Problem"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasExpectedStep"/>
+        <Class IRI="#SolutionStep"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#hasHint"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasHint"/>
+        <Class IRI="#Misconception"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasHint"/>
+        <Class IRI="#Hint"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#triggersAction"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#triggersAction"/>
+        <Class IRI="#Misconception"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#triggersAction"/>
+        <Class IRI="#TutorAction"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#targetsSkill"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#targetsSkill"/>
+        <Class IRI="#Problem"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#targetsSkill"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#previousState"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#previousState"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#previousState"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyRange>
+
+    <Declaration><ObjectProperty IRI="#hasMisconception"/></Declaration>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasMisconception"/>
+        <Class IRI="#EquationState"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasMisconception"/>
+        <Class IRI="#Misconception"/>
+    </ObjectPropertyRange>
+
+    <!-- ############################ -->
+    <!-- ##### DATA PROPERTIES  ##### -->
+    <!-- ############################ -->
+
+    <Declaration><DataProperty IRI="#textValue"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#textValue"/>
+        <Class IRI="#Expression"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#textValue"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#string"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#numericValue"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#numericValue"/>
+        <Class IRI="#Expression"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#numericValue"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#double"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#stepNumber"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#stepNumber"/>
+        <Class IRI="#Step"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#stepNumber"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#integer"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#confidenceScore"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#confidenceScore"/>
+        <Class IRI="#Student"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#confidenceScore"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#double"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#errorCount"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#errorCount"/>
+        <Class IRI="#Student"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#errorCount"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#integer"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#hintLevel"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hintLevel"/>
+        <Class IRI="#Hint"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hintLevel"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#integer"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#hasLeftValue"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasLeftValue"/>
+        <Class IRI="#EquationState"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasLeftValue"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#string"/>
+    </DataPropertyRange>
+
+    <Declaration><DataProperty IRI="#hasRightValue"/></Declaration>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasRightValue"/>
+        <Class IRI="#EquationState"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasRightValue"/>
+        <Datatype IRI="http://www.w3.org/2001/XMLSchema#string"/>
+    </DataPropertyRange>
+
+    <!-- ######################## -->
+    <!-- #####  INDIVIDUALS ##### -->
+    <!-- ######################## -->
+
+    <!-- Skills -->
+    <Declaration><NamedIndividual IRI="#UnderstandingVariables"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#Skill"/>
+        <NamedIndividual IRI="#UnderstandingVariables"/>
+    </ClassAssertion>
+
+    <Declaration><NamedIndividual IRI="#BalancePrinciple"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#Skill"/>
+        <NamedIndividual IRI="#BalancePrinciple"/>
+    </ClassAssertion>
+
+    <!-- Problem: 3x + 5 = 20 -->
+    <Declaration><NamedIndividual IRI="#prob_3x_plus5_eq_20"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#LinearEquationProblem"/>
+        <NamedIndividual IRI="#prob_3x_plus5_eq_20"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#targetsSkill"/>
+        <NamedIndividual IRI="#prob_3x_plus5_eq_20"/>
+        <NamedIndividual IRI="#BalancePrinciple"/>
+    </ObjectPropertyAssertion>
+
+    <!-- Expert solution steps -->
+    <Declaration><NamedIndividual IRI="#solstep1_prob_3x_plus5"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#SolutionStep"/>
+        <NamedIndividual IRI="#solstep1_prob_3x_plus5"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#stepNumber"/>
+        <NamedIndividual IRI="#solstep1_prob_3x_plus5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+
+    <Declaration><NamedIndividual IRI="#solstep2_prob_3x_plus5"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#SolutionStep"/>
+        <NamedIndividual IRI="#solstep2_prob_3x_plus5"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#stepNumber"/>
+        <NamedIndividual IRI="#solstep2_prob_3x_plus5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasExpectedStep"/>
+        <NamedIndividual IRI="#prob_3x_plus5_eq_20"/>
+        <NamedIndividual IRI="#solstep1_prob_3x_plus5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasExpectedStep"/>
+        <NamedIndividual IRI="#prob_3x_plus5_eq_20"/>
+        <NamedIndividual IRI="#solstep2_prob_3x_plus5"/>
+    </ObjectPropertyAssertion>
+
+    <!-- Equation state: initial 3x + 5 = 20 -->
+    <Declaration><NamedIndividual IRI="#state0"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#EquationState"/>
+        <NamedIndividual IRI="#state0"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasOriginalProblem"/>
+        <NamedIndividual IRI="#state0"/>
+        <NamedIndividual IRI="#prob_3x_plus5_eq_20"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLeftValue"/>
+        <NamedIndividual IRI="#state0"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">3x+5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasRightValue"/>
+        <NamedIndividual IRI="#state0"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">20</Literal>
+    </DataPropertyAssertion>
+
+    <!-- A student -->
+    <Declaration><NamedIndividual IRI="#student_A"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#Student"/>
+        <NamedIndividual IRI="#student_A"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasProblemState"/>
+        <NamedIndividual IRI="#student_A"/>
+        <NamedIndividual IRI="#state0"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#confidenceScore"/>
+        <NamedIndividual IRI="#student_A"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">0.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#errorCount"/>
+        <NamedIndividual IRI="#student_A"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+
+    <!-- Hint and TutorAction -->
+    <Declaration><NamedIndividual IRI="#hint_subtract_both_sides"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#Hint"/>
+        <NamedIndividual IRI="#hint_subtract_both_sides"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hintLevel"/>
+        <NamedIndividual IRI="#hint_subtract_both_sides"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+
+    <Declaration><NamedIndividual IRI="#action_show_hint"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#TutorAction"/>
+        <NamedIndividual IRI="#action_show_hint"/>
+    </ClassAssertion>
+
+    <!-- Misconception instance example -->
+    <Declaration><NamedIndividual IRI="#one_sided_op_example"/></Declaration>
+    <ClassAssertion>
+        <Class IRI="#OneSidedOperation"/>
+        <NamedIndividual IRI="#one_sided_op_example"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasHint"/>
+        <NamedIndividual IRI="#one_sided_op_example"/>
+        <NamedIndividual IRI="#hint_subtract_both_sides"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#triggersAction"/>
+        <NamedIndividual IRI="#one_sided_op_example"/>
+        <NamedIndividual IRI="#action_show_hint"/>
+    </ObjectPropertyAssertion>
+
+</Ontology>
